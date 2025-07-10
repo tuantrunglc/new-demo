@@ -17,9 +17,14 @@
       <a class="nav-link" href="#">Hàng mới về</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">
+      <router-link class="nav-link" to="/admin/login">
         <i class="fas fa-user me-1"></i> Tài khoản
-      </a>
+      </router-link>
+    </li>
+    <li class="nav-item">
+      <router-link class="nav-link" to="/admin">
+        <i class="fas fa-cog me-1"></i> Admin
+      </router-link>
     </li>
   </ul>
 </template>
