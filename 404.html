@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Redirecting...</title>
+  <script>
+    // Lấy đường dẫn hiện tại, bỏ qua domain
+    var path = window.location.pathname;
+    var repo = '/new-demo/'; // Thay đổi thành tên repository của bạn
+    
+    // Kiểm tra xem đường dẫn có bắt đầu bằng tên repository không
+    if (path.indexOf(repo) === 0) {
+      // Lấy phần đường dẫn sau tên repository
+      path = path.slice(repo.length);
+    }
+    
+    // Lưu đường dẫn vào sessionStorage
+    sessionStorage.setItem('redirect', path);
+    
+    // Chuyển hướng về trang chính
+    window.location.href = repo;
+  </script>
+</head>
+<body>
+  <p>Redirecting...</p>
+</body>
+</html>

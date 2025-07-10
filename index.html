@@ -1,1 +1,11 @@
-<!doctype html><html lang=""><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" href="/new-demo/favicon.ico"><title>ecommerce-homepage</title><script defer="defer" src="/new-demo/js/chunk-vendors.12e8222b.js"></script><script defer="defer" src="/new-demo/js/app.f537a920.js"></script><link href="/new-demo/css/chunk-vendors.669976b7.css" rel="stylesheet"><link href="/new-demo/css/app.a176a19f.css" rel="stylesheet"></head><body><noscript><strong>We're sorry but ecommerce-homepage doesn't work properly without JavaScript enabled. Please enable it to continue.</strong></noscript><div id="app"></div></body></html>
+<!doctype html><html lang=""><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" href="/new-demo/favicon.ico"><title>ecommerce-homepage</title><script>// Kiểm tra xem có chuyển hướng từ 404.html không
+      (function() {
+        var redirect = sessionStorage.getItem('redirect');
+        if (redirect && redirect !== location.pathname) {
+          sessionStorage.removeItem('redirect');
+          // Thêm một chút delay để đảm bảo Vue đã được khởi tạo
+          setTimeout(function() {
+            history.replaceState(null, null, redirect);
+          }, 100);
+        }
+      })();</script><script defer="defer" src="/new-demo/js/chunk-vendors.9bad3bcc.js"></script><script defer="defer" src="/new-demo/js/app.3c31d5a1.js"></script><link href="/new-demo/css/chunk-vendors.669976b7.css" rel="stylesheet"><link href="/new-demo/css/app.a176a19f.css" rel="stylesheet"></head><body><noscript><strong>We're sorry but ecommerce-homepage doesn't work properly without JavaScript enabled. Please enable it to continue.</strong></noscript><div id="app"></div></body></html>
