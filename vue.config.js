@@ -1,5 +1,6 @@
 const { defineConfig } = require('@vue/cli-service')
 module.exports = defineConfig({
+  publicPath: '/', // ✅ Với Netlify luôn là '/'
   transpileDependencies: true
 })
 // module.exports = {
