@@ -1,7 +1,7 @@
 <template>
   <div class="container mb-5">
     <div class="d-flex justify-content-between align-items-center mb-4">
-      <h2 class="section-title">Mua sắm theo danh mục</h2>
+      <h2 class="section-title">Shop by Category</h2>
     </div>
     
     <div class="row row-cols-2 row-cols-md-4 g-3">
