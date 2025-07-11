@@ -2,8 +2,8 @@
   <section class="lucky-spin-section py-5">
     <div class="container">
       <div class="text-center mb-5">
-        <h2 class="display-5 fw-bold">Thử Vận May!</h2>
-        <p class="lead">Quay vòng quay và nhận những phần quà hấp dẫn</p>
+        <h2 class="display-5 fw-bold">Try Your Luck!</h2>
+        <p class="lead">Spin the wheel and win exciting prizes</p>
       </div>
       
       <div class="row">
@@ -14,7 +14,7 @@
               class="spin-button mt-4" 
               @click="spinWheel" 
               :disabled="isSpinning">
-              {{ isSpinning ? 'Đang quay...' : 'Quay Ngay' }}
+              {{ isSpinning ? 'Spinning...' : 'Spin Now' }}
             </button>
           </div>
         </div>

@@ -11,13 +11,13 @@
 </template>
 
 <script>
-import { spinRewards } from '../../data/lucky-spin';
+import { luckySpinItems } from '../../data/lucky-spin';
 
 export default {
   name: 'LuckyWheel',
   data() {
     return {
-      rewards: spinRewards,
+      rewards: luckySpinItems,
       isSpinning: false,
       selectedReward: null,
       canvas: null,
@@ -65,7 +65,7 @@ export default {
         ctx.textAlign = 'right';
         ctx.fillStyle = '#000';
         ctx.font = 'bold 14px Arial';
-        ctx.fillText(rewards[i].name, radius - 20, 5);
+        ctx.fillText(rewards[i].label, radius - 20, 5);
         ctx.restore();
       }
       

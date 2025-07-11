@@ -1,0 +1,59 @@
+// Dữ liệu mẫu cho Dashboard
+
+export const dashboardData = {
+  totalUsers: 5,
+  totalSellers: 2,
+  totalOrders: 5,
+  todayRevenue: 10990000,
+  topSellers: [
+    {
+      id: 2,
+      name: "Trần Thị B",
+      sales: 33990000,
+      orders: 3
+    },
+    {
+      id: 5,
+      name: "Hoàng E",
+      sales: 69500000,
+      orders: 2
+    }
+  ],
+  ordersByDay: [
+    {
+      date: "2023-07-09",
+      count: 0,
+      revenue: 0
+    },
+    {
+      date: "2023-07-10",
+      count: 1,
+      revenue: 5500000
+    },
+    {
+      date: "2023-07-11",
+      count: 0,
+      revenue: 0
+    },
+    {
+      date: "2023-07-12",
+      count: 1,
+      revenue: 27500000
+    },
+    {
+      date: "2023-07-13",
+      count: 0,
+      revenue: 0
+    },
+    {
+      date: "2023-07-14",
+      count: 0,
+      revenue: 0
+    },
+    {
+      date: "2023-07-15",
+      count: 1,
+      revenue: 10990000
+    }
+  ]
+};

@@ -1,170 +1,175 @@
 // Dữ liệu mẫu cho trang thương mại điện tử
 
+export const products = [
+  {
+    id: 1,
+    name: "Điện thoại Samsung Galaxy S23",
+    description: "Điện thoại Samsung Galaxy S23 mới nhất với camera 108MP",
+    price: 18990000,
+    discountPrice: 17500000,
+    sellerId: 2,
+    sellerName: "Trần Thị B",
+    category: "Điện thoại",
+    status: "approved",
+    commission_rate: 5,
+    images: [
+      "https://via.placeholder.com/300x300.png?text=Samsung+S23"
+    ],
+    createdAt: "2023-06-10T08:30:00Z",
+    updatedAt: "2023-06-15T10:15:00Z",
+    stock: 25
+  },
+  {
+    id: 2,
+    name: "Laptop Dell XPS 15",
+    description: "Laptop Dell XPS 15 với màn hình 4K, chip Intel i9",
+    price: 42000000,
+    discountPrice: null,
+    sellerId: 5,
+    sellerName: "Hoàng E",
+    category: "Laptop",
+    status: "approved",
+    commission_rate: 3,
+    images: [
+      "https://via.placeholder.com/300x300.png?text=Dell+XPS+15"
+    ],
+    createdAt: "2023-06-12T09:45:00Z",
+    updatedAt: "2023-06-12T09:45:00Z",
+    stock: 10
+  },
+  {
+    id: 3,
+    name: "Tai nghe Apple AirPods Pro",
+    description: "Tai nghe Apple AirPods Pro với khả năng chống ồn chủ động",
+    price: 5990000,
+    discountPrice: 5500000,
+    sellerId: 2,
+    sellerName: "Trần Thị B",
+    category: "Phụ kiện",
+    status: "pending",
+    commission_rate: 8,
+    images: [
+      "https://via.placeholder.com/300x300.png?text=AirPods+Pro"
+    ],
+    createdAt: "2023-06-14T14:20:00Z",
+    updatedAt: "2023-06-14T14:20:00Z",
+    stock: 30
+  },
+  {
+    id: 4,
+    name: "iPad Pro 12.9 inch",
+    description: "iPad Pro 12.9 inch với chip M2, màn hình Liquid Retina XDR",
+    price: 28990000,
+    discountPrice: 27500000,
+    sellerId: 5,
+    sellerName: "Hoàng E",
+    category: "Máy tính bảng",
+    status: "approved",
+    commission_rate: 4,
+    images: [
+      "https://via.placeholder.com/300x300.png?text=iPad+Pro"
+    ],
+    createdAt: "2023-06-15T11:10:00Z",
+    updatedAt: "2023-06-16T09:30:00Z",
+    stock: 15
+  },
+  {
+    id: 5,
+    name: "Đồng hồ thông minh Apple Watch Series 8",
+    description: "Apple Watch Series 8 với tính năng đo ECG, SpO2",
+    price: 10990000,
+    discountPrice: null,
+    sellerId: 2,
+    sellerName: "Trần Thị B",
+    category: "Đồng hồ thông minh",
+    status: "pending",
+    commission_rate: 6,
+    images: [
+      "https://via.placeholder.com/300x300.png?text=Apple+Watch"
+    ],
+    createdAt: "2023-06-18T15:45:00Z",
+    updatedAt: "2023-06-18T15:45:00Z",
+    stock: 20
+  }
+];
+
+// For backward compatibility
 export const featuredProducts = [
   {
     id: 1,
-    name: "Tai Nghe Không Dây Cao Cấp",
+    name: "Premium Wireless Headphones",
     price: 2990000,
     originalPrice: 4590000,
     image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
     rating: 4.8,
     reviews: 245,
     discount: 35,
-    category: "Điện tử"
+    category: "Electronics",
+    commission_rate: 7
   },
   {
     id: 2,
-    name: "Đồng Hồ Thông Minh Series 5",
+    name: "Smart Watch Series 5",
     price: 6890000,
     originalPrice: 8050000,
     image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
     rating: 4.6,
     reviews: 189,
     discount: 14,
-    category: "Điện tử"
+    category: "Electronics",
+    commission_rate: 5
   },
   {
     id: 3,
-    name: "Ghế Văn Phòng Công Thái Học",
+    name: "Ergonomic Office Chair",
     price: 4590000,
     originalPrice: 5750000,
     image: "https://images.unsplash.com/photo-1505843513577-22bb7d21e455?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
     rating: 4.5,
     reviews: 120,
     discount: 20,
-    category: "Nội thất"
+    category: "Furniture",
+    commission_rate: 8
   },
   {
     id: 4,
-    name: "Máy Ảnh DSLR Chuyên Nghiệp",
+    name: "Professional DSLR Camera",
     price: 20690000,
     originalPrice: 25290000,
     image: "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
     rating: 4.9,
     reviews: 310,
     discount: 18,
-    category: "Điện tử"
-  },
-  {
-    id: 5,
-    name: "Kính Mát Thời Trang",
-    price: 1380000,
-    originalPrice: 2070000,
-    image: "https://images.unsplash.com/photo-1572635196237-14b3f281503f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-    rating: 4.3,
-    reviews: 98,
-    discount: 33,
-    category: "Thời trang"
-  },
-  {
-    id: 6,
-    name: "Loa Bluetooth Di Động",
-    price: 1840000,
-    originalPrice: 2300000,
-    image: "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-    rating: 4.7,
-    reviews: 156,
-    discount: 20,
-    category: "Điện tử"
-  },
-  {
-    id: 7,
-    name: "Ví Da Cao Cấp",
-    price: 1150000,
-    originalPrice: 1610000,
-    image: "https://images.unsplash.com/photo-1627123424574-724758594e93?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-    rating: 4.4,
-    reviews: 87,
-    discount: 29,
-    category: "Thời trang"
-  },
-  {
-    id: 8,
-    name: "Bình Nước Thép Không Gỉ",
-    price: 575000,
-    originalPrice: 805000,
-    image: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-    rating: 4.2,
-    reviews: 65,
-    discount: 29,
-    category: "Nhà bếp"
+    category: "Electronics",
+    commission_rate: 6
   }
 ];
 
 export const dailyDeals = [
   {
     id: 101,
-    name: "Tai Nghe Bluetooth Không Dây",
+    name: "Wireless Bluetooth Earbuds",
     price: 1150000,
     originalPrice: 2070000,
     image: "https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
     rating: 4.5,
     reviews: 132,
     discount: 44,
-    category: "Điện tử",
-    timeLeft: "8g 45p"
+    category: "Electronics",
+    timeLeft: "8h 45m",
+    commission_rate: 10
   },
   {
     id: 102,
-    name: "Camera An Ninh Thông Minh",
+    name: "Smart Security Camera",
     price: 1840000,
     originalPrice: 3450000,
     image: "https://images.unsplash.com/photo-1557438159-51eec7a6c9e8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
     rating: 4.7,
     reviews: 98,
     discount: 47,
-    category: "Điện tử",
-    timeLeft: "3g 20p"
-  },
-  {
-    id: 103,
-    name: "Bộ Nồi Chảo Chống Dính",
-    price: 2990000,
-    originalPrice: 5750000,
-    image: "https://images.unsplash.com/photo-1585837073703-7d6fd8e0c3a5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-    rating: 4.6,
-    reviews: 75,
-    discount: 48,
-    category: "Nhà bếp",
-    timeLeft: "5g 10p"
-  },
-  {
-    id: 104,
-    name: "Vòng Đeo Tay Thông Minh",
-    price: 1380000,
-    originalPrice: 2300000,
-    image: "https://images.unsplash.com/photo-1576243345690-4e4b79b63288?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-    rating: 4.4,
-    reviews: 112,
-    discount: 40,
-    category: "Điện tử",
-    timeLeft: "11g 30p"
-  }
-];
-
-export const carouselItems = [
-  {
-    id: 1,
-    title: "Khuyến Mãi Mùa Hè",
-    subtitle: "Giảm giá đến 50% cho các sản phẩm được chọn",
-    image: "https://images.unsplash.com/photo-1607082350899-7e105aa886ae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80",
-    buttonText: "Mua Ngay",
-    buttonLink: "#"
-  },
-  {
-    id: 2,
-    title: "Hàng Mới Về",
-    subtitle: "Khám phá các sản phẩm mới nhất của chúng tôi",
-    image: "https://images.unsplash.com/photo-1607083206968-13611e3d76db?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80",
-    buttonText: "Khám Phá",
-    buttonLink: "#"
-  },
-  {
-    id: 3,
-    title: "Tuần Lễ Điện Tử",
-    subtitle: "Ưu đãi đặc biệt cho tất cả sản phẩm điện tử",
-    image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80",
-    buttonText: "Xem Ưu Đãi",
-    buttonLink: "#"
+    category: "Electronics",
+    timeLeft: "3h 20m",
+    commission_rate: 9
   }
 ];

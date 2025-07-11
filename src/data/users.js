@@ -9,7 +9,9 @@ export const users = [
     address: '123 Đường Lê Lợi, Quận 1, TP.HCM',
     registeredDate: '2023-01-15',
     status: 'active',
-    orders: 5
+    role: 'user',
+    orders: 5,
+    managed_by: null
   },
   {
     id: 2,
@@ -20,18 +22,22 @@ export const users = [
     address: '456 Đường Nguyễn Huệ, Quận 1, TP.HCM',
     registeredDate: '2023-02-20',
     status: 'active',
-    orders: 3
+    role: 'seller',
+    orders: 3,
+    managed_by: 3
   },
   {
     id: 3,
-    username: 'lequangc',
+    username: 'subadmin',
     fullName: 'Lê Quang C',
     email: 'lequangc@example.com',
     phone: '0923456789',
     address: '789 Đường Trần Hưng Đạo, Quận 5, TP.HCM',
     registeredDate: '2023-03-10',
-    status: 'inactive',
-    orders: 0
+    status: 'active',
+    role: 'sub_admin',
+    orders: 0,
+    managed_by: 6
   },
   {
     id: 4,
@@ -42,7 +48,9 @@ export const users = [
     address: '101 Đường Võ Văn Tần, Quận 3, TP.HCM',
     registeredDate: '2023-04-05',
     status: 'active',
-    orders: 8
+    role: 'user',
+    orders: 8,
+    managed_by: null
   },
   {
     id: 5,
@@ -53,19 +61,42 @@ export const users = [
     address: '202 Đường Điện Biên Phủ, Quận Bình Thạnh, TP.HCM',
     registeredDate: '2023-05-12',
     status: 'active',
-    orders: 2
+    role: 'seller',
+    orders: 2,
+    managed_by: 3
+  },
+  {
+    id: 6,
+    username: 'admin',
+    fullName: 'Admin User',
+    email: 'admin@example.com',
+    phone: '0909123456',
+    address: '123 Admin Street',
+    registeredDate: '2022-01-01',
+    status: 'active',
+    role: 'admin',
+    orders: 0,
+    managed_by: null
   }
 ];
 
 // Admin users
 export const adminUsers = [
   {
-    id: 1,
+    id: 6,
     username: 'admin',
     password: 'admin123', // In a real app, this would be hashed
     fullName: 'Admin User',
     email: 'admin@example.com',
     role: 'admin'
+  },
+  {
+    id: 3,
+    username: 'subadmin',
+    password: 'subadmin123', // In a real app, this would be hashed
+    fullName: 'Lê Quang C',
+    email: 'lequangc@example.com',
+    role: 'sub_admin'
   }
 ];
 
@@ -83,6 +114,7 @@ export const authenticateAdmin = (username, password) => {
         id: admin.id,
         username: admin.username,
         fullName: admin.fullName,
+        email: admin.email,
         role: admin.role
       }
     };

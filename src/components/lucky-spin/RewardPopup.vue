@@ -1,27 +1,27 @@
 <template>
   <transition name="fade">
     <div class="reward-popup" v-if="show && reward">
-      <div class="reward-content" :class="{ 'no-prize': reward.name === 'Không trúng' }">
+      <div class="reward-content" :class="{ 'no-prize': reward.name === 'No Prize' }">
         <div class="reward-icon">
           <i :class="reward.icon"></i>
         </div>
-        <h2 class="reward-title" v-if="reward.name === 'Không trúng'">Rất tiếc!</h2>
-        <h2 class="reward-title" v-else>Chúc mừng!</h2>
+        <h2 class="reward-title" v-if="reward.name === 'No Prize'">Sorry!</h2>
+        <h2 class="reward-title" v-else>Congratulations!</h2>
         
-        <p class="reward-description" v-if="reward.name === 'Không trúng'">
-          Bạn không trúng thưởng lần này
+        <p class="reward-description" v-if="reward.name === 'No Prize'">
+          You didn't win this time
         </p>
         <p class="reward-description" v-else>
-          Bạn đã trúng: {{ reward.name }}
+          You won: {{ reward.name }}
         </p>
         
         <p>{{ reward.description }}</p>
         
-        <button class="close-reward" @click="closePopup" v-if="reward.name === 'Không trúng'">
-          Thử lại
+        <button class="close-reward" @click="closePopup" v-if="reward.name === 'No Prize'">
+          Try Again
         </button>
         <button class="close-reward" @click="closePopup" v-else>
-          Nhận Thưởng
+          Claim Reward
         </button>
       </div>
     </div>

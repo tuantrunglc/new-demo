@@ -14,15 +14,18 @@
           <i class="fas fa-star text-warning"></i>
           {{ product.rating }}
         </div>
-        <div class="text-muted small">({{ product.reviews }} đánh giá)</div>
+        <div class="text-muted small">({{ product.reviews }} reviews)</div>
       </div>
-      <div v-if="product.discount" class="badge bg-danger mb-2">Giảm {{ product.discount }}%</div>
+      <div v-if="product.discount" class="badge bg-danger mb-2">Discount {{ product.discount }}%</div>
       <div v-if="product.timeLeft" class="badge bg-warning text-dark mb-2">
-        <i class="fas fa-clock me-1"></i> Còn {{ product.timeLeft }}
+        <i class="fas fa-clock me-1"></i> Time left: {{ product.timeLeft }}
+      </div>
+      <div v-if="product.commission_rate" class="badge bg-info text-white mb-2">
+        <i class="fas fa-percentage me-1"></i> Commission: {{ product.commission_rate }}%
       </div>
       <div class="mt-auto">
         <button class="btn btn-primary w-100">
-          <i class="fas fa-shopping-cart me-1"></i> Thêm vào giỏ
+          <i class="fas fa-shopping-cart me-1"></i> Add to Cart
         </button>
       </div>
     </div>
@@ -40,10 +43,12 @@ export default {
   },
   methods: {
     formatCurrency(value) {
-      return new Intl.NumberFormat('vi-VN', {
+      // Convert VND to USD (approximate conversion rate: 1 USD = 23,000 VND)
+      const usdValue = value / 23000;
+      return new Intl.NumberFormat('en-US', {
         style: 'currency',
-        currency: 'VND'
-      }).format(value);
+        currency: 'USD'
+      }).format(usdValue);
     }
   }
 }

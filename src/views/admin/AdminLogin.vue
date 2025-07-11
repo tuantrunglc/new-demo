@@ -1,56 +1,61 @@
 <template>
-  <div class="admin-login">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-md-6 col-lg-5">
-          <div class="card shadow mt-5">
-            <div class="card-body p-5">
-              <h2 class="text-center mb-4">Admin Login</h2>
-              
-              <div v-if="error" class="alert alert-danger">
-                {{ error }}
-              </div>
-              
-              <form @submit.prevent="handleLogin">
-                <div class="mb-3">
-                  <label for="username" class="form-label">Tên đăng nhập</label>
-                  <input 
-                    type="text" 
-                    class="form-control" 
-                    id="username" 
-                    v-model="username" 
-                    required
-                  >
-                </div>
-                
-                <div class="mb-4">
-                  <label for="password" class="form-label">Mật khẩu</label>
-                  <input 
-                    type="password" 
-                    class="form-control" 
-                    id="password" 
-                    v-model="password" 
-                    required
-                  >
-                </div>
-                
-                <button 
-                  type="submit" 
-                  class="btn btn-primary w-100" 
-                  :disabled="loading"
-                >
-                  <span v-if="loading" class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
-                  Đăng nhập
-                </button>
-              </form>
-              
-              <div class="mt-4 text-center">
-                <router-link to="/" class="text-decoration-none">
-                  <i class="fas fa-arrow-left me-1"></i> Quay lại trang chủ
-                </router-link>
-              </div>
-            </div>
+  <div class="min-h-screen bg-gray-100 flex items-center justify-center px-4 py-12">
+    <div class="max-w-md w-full bg-white rounded-lg shadow-lg overflow-hidden">
+      <div class="bg-indigo-600 py-4">
+        <h2 class="text-center text-white text-2xl font-bold">Admin Login</h2>
+      </div>
+      
+      <div class="p-6">
+        <div v-if="error" class="mb-4 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
+          {{ error }}
+        </div>
+        
+        <form @submit.prevent="handleLogin">
+          <div class="mb-4">
+            <label for="username" class="block text-gray-700 text-sm font-bold mb-2">Tên đăng nhập</label>
+            <input 
+              type="text" 
+              id="username" 
+              v-model="username" 
+              required
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              placeholder="Nhập tên đăng nhập"
+            >
           </div>
+          
+          <div class="mb-6">
+            <label for="password" class="block text-gray-700 text-sm font-bold mb-2">Mật khẩu</label>
+            <input 
+              type="password" 
+              id="password" 
+              v-model="password" 
+              required
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              placeholder="Nhập mật khẩu"
+            >
+          </div>
+          
+          <div class="flex items-center justify-between">
+            <button 
+              type="submit" 
+              class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              :disabled="loading"
+            >
+              <span v-if="loading" class="inline-block animate-spin h-4 w-4 border-t-2 border-white rounded-full mr-2"></span>
+              Đăng nhập
+            </button>
+          </div>
+        </form>
+        
+        <div class="mt-6 text-center">
+          <router-link to="/" class="text-indigo-600 hover:text-indigo-800 text-sm">
+            <i class="fas fa-arrow-left mr-1"></i> Quay lại trang chủ
+          </router-link>
+        </div>
+        
+        <div class="mt-4 text-center text-gray-500 text-xs">
+          <p>Tài khoản demo: admin / admin123</p>
+          <p>Tài khoản sub-admin: subadmin / subadmin123</p>
         </div>
       </div>
     </div>
@@ -60,22 +65,22 @@
 <script>
 import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
-import { useAdminStore } from '../../stores/adminStore'
+import { useUserStore } from '../../stores/userStore'
 
 export default {
   name: 'AdminLogin',
   setup() {
     const router = useRouter()
-    const adminStore = useAdminStore()
+    const userStore = useUserStore()
     
     const username = ref('')
     const password = ref('')
     
-    const loading = computed(() => adminStore.loading)
-    const error = computed(() => adminStore.error)
+    const loading = computed(() => userStore.loading)
+    const error = computed(() => userStore.error)
     
     const handleLogin = async () => {
-      const success = await adminStore.login(username.value, password.value)
+      const success = await userStore.login(username.value, password.value)
       if (success) {
         router.push('/admin')
       }
@@ -91,11 +96,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-.admin-login {
-  min-height: 100vh;
-  background-color: #f8f9fa;
-  padding: 40px 0;
-}
-</style>

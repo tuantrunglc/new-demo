@@ -2,7 +2,7 @@
   <div class="container mb-5">
     <div class="d-flex justify-content-between align-items-center mb-4">
       <h2 class="section-title">{{ title }}</h2>
-      <a href="#" class="btn btn-outline-primary">Xem tất cả</a>
+      <a href="#" class="btn btn-outline-primary">View All</a>
     </div>
     
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">

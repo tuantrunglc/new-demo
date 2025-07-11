@@ -1,18 +1,17 @@
 <template>
   <div class="spin-history">
-    <h4 class="mb-3">Lịch Sử Quay Thưởng</h4>
+    <h4 class="mb-3">Spin History</h4>
     <div v-if="history.length === 0" class="text-center py-3">
-      Chưa có lịch sử quay thưởng. Hãy thử vận may của bạn!
+      No spin history yet. Try your luck!
     </div>
     <div v-else>
-      <div v-for="item in history" :key="item.id" class="spin-history-item d-flex justify-content-between align-items-center">
+      <div v-for="(item, index) in history" :key="index" class="spin-history-item d-flex justify-content-between align-items-center">
         <div>
-          <div class="fw-bold">{{ item.reward }}</div>
+          <div class="fw-bold">{{ item.itemLabel }}</div>
           <div class="small">{{ formatDate(item.date) }}</div>
         </div>
         <div>
-          <span v-if="item.used" class="badge bg-secondary">Đã dùng</span>
-          <span v-else class="badge bg-success">Khả dụng</span>
+          <span class="badge bg-success">Available</span>
         </div>
       </div>
     </div>
@@ -20,13 +19,13 @@
 </template>
 
 <script>
-import { spinHistory } from '../../data/lucky-spin';
+import { userSpins } from '../../data/lucky-spin';
 
 export default {
   name: 'SpinHistory',
   data() {
     return {
-      history: spinHistory
+      history: userSpins.length > 0 ? userSpins[0].history : []
     }
   },
   methods: {
@@ -40,10 +39,9 @@ export default {
       console.log('Adding to history:', reward);
       
       const newHistoryItem = {
-        id: Date.now(), // Use timestamp as unique ID
-        date: new Date().toISOString().split('T')[0],
-        reward: reward.name,
-        used: false
+        date: new Date().toISOString(),
+        itemId: reward.id,
+        itemLabel: reward.label
       };
       
       // Add to beginning of array

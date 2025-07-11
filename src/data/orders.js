@@ -1,159 +1,136 @@
 // Sample order data for admin panel
-/* eslint-disable no-unused-vars */
-import { featuredProducts, dailyDeals } from './products';
-/* eslint-enable no-unused-vars */
-
-// Note: We're importing products for potential future use
-// but not using them directly in this file
 
 export const orders = [
   {
-    id: 'ORD-2023-001',
+    id: 'ORD-001',
     userId: 1,
-    customerName: 'Nguyễn Văn A',
-    customerEmail: 'nguyenvana@example.com',
-    customerPhone: '0901234567',
-    shippingAddress: '123 Đường Lê Lợi, Quận 1, TP.HCM',
-    orderDate: '2023-06-15',
-    status: 'delivered',
-    paymentMethod: 'COD',
-    paymentStatus: 'paid',
+    userName: 'Nguyễn Văn A',
+    sellerId: 2,
+    sellerName: 'Trần Thị B',
     items: [
       {
         productId: 1,
         productName: 'Tai Nghe Không Dây Cao Cấp',
         price: 2990000,
         quantity: 1,
-        total: 2990000
+        subtotal: 2990000
       },
       {
         productId: 5,
         productName: 'Kính Mát Thời Trang',
         price: 1380000,
         quantity: 1,
-        total: 1380000
+        subtotal: 1380000
       }
     ],
-    subtotal: 4370000,
-    shippingFee: 30000,
-    discount: 0,
-    total: 4400000
+    total: 4400000,
+    status: 'completed',
+    paymentStatus: 'paid',
+    paymentMethod: 'credit_card',
+    shippingAddress: '123 Đường Lê Lợi, Quận 1, TP.HCM',
+    createdAt: '2023-07-05T09:30:00Z',
+    updatedAt: '2023-07-07T14:20:00Z'
   },
   {
-    id: 'ORD-2023-002',
-    userId: 2,
-    customerName: 'Trần Thị B',
-    customerEmail: 'tranthib@example.com',
-    customerPhone: '0912345678',
-    shippingAddress: '456 Đường Nguyễn Huệ, Quận 1, TP.HCM',
-    orderDate: '2023-06-18',
-    status: 'shipped',
-    paymentMethod: 'Banking',
-    paymentStatus: 'paid',
+    id: 'ORD-002',
+    userId: 4,
+    userName: 'Phạm Thị D',
+    sellerId: 5,
+    sellerName: 'Hoàng E',
     items: [
       {
         productId: 2,
         productName: 'Đồng Hồ Thông Minh Series 5',
         price: 6890000,
         quantity: 1,
-        total: 6890000
+        subtotal: 6890000
       }
     ],
-    subtotal: 6890000,
-    shippingFee: 0,
-    discount: 500000,
-    total: 6390000
+    total: 6890000,
+    status: 'processing',
+    paymentStatus: 'paid',
+    paymentMethod: 'bank_transfer',
+    shippingAddress: '101 Đường Võ Văn Tần, Quận 3, TP.HCM',
+    createdAt: '2023-07-08T11:45:00Z',
+    updatedAt: '2023-07-08T11:45:00Z'
   },
   {
-    id: 'ORD-2023-003',
-    userId: 4,
-    customerName: 'Phạm Thị D',
-    customerEmail: 'phamthid@example.com',
-    customerPhone: '0934567890',
-    shippingAddress: '101 Đường Võ Văn Tần, Quận 3, TP.HCM',
-    orderDate: '2023-06-20',
-    status: 'processing',
-    paymentMethod: 'Credit Card',
-    paymentStatus: 'paid',
+    id: 'ORD-003',
+    userId: 1,
+    userName: 'Nguyễn Văn A',
+    sellerId: 2,
+    sellerName: 'Trần Thị B',
     items: [
       {
         productId: 3,
         productName: 'Ghế Văn Phòng Công Thái Học',
         price: 4590000,
         quantity: 1,
-        total: 4590000
-      },
-      {
-        productId: 8,
-        productName: 'Bình Nước Thép Không Gỉ',
-        price: 575000,
-        quantity: 2,
-        total: 1150000
+        subtotal: 4590000
       }
     ],
-    subtotal: 5740000,
-    shippingFee: 50000,
-    discount: 0,
-    total: 5790000
-  },
-  {
-    id: 'ORD-2023-004',
-    userId: 5,
-    customerName: 'Hoàng E',
-    customerEmail: 'hoange@example.com',
-    customerPhone: '0945678901',
-    shippingAddress: '202 Đường Điện Biên Phủ, Quận Bình Thạnh, TP.HCM',
-    orderDate: '2023-06-22',
-    status: 'pending',
-    paymentMethod: 'COD',
-    paymentStatus: 'pending',
-    items: [
-      {
-        productId: 6,
-        productName: 'Loa Bluetooth Di Động',
-        price: 1840000,
-        quantity: 1,
-        total: 1840000
-      }
-    ],
-    subtotal: 1840000,
-    shippingFee: 30000,
-    discount: 0,
-    total: 1870000
-  },
-  {
-    id: 'ORD-2023-005',
-    userId: 1,
-    customerName: 'Nguyễn Văn A',
-    customerEmail: 'nguyenvana@example.com',
-    customerPhone: '0901234567',
+    total: 4590000,
+    status: 'shipped',
+    paymentStatus: 'paid',
+    paymentMethod: 'momo',
     shippingAddress: '123 Đường Lê Lợi, Quận 1, TP.HCM',
-    orderDate: '2023-06-25',
-    status: 'cancelled',
-    paymentMethod: 'Banking',
-    paymentStatus: 'refunded',
+    createdAt: '2023-07-10T15:20:00Z',
+    updatedAt: '2023-07-11T09:10:00Z'
+  },
+  {
+    id: 'ORD-004',
+    userId: 4,
+    userName: 'Phạm Thị D',
+    sellerId: 5,
+    sellerName: 'Hoàng E',
     items: [
       {
         productId: 4,
         productName: 'Máy Ảnh DSLR Chuyên Nghiệp',
         price: 20690000,
         quantity: 1,
-        total: 20690000
+        subtotal: 20690000
       }
     ],
-    subtotal: 20690000,
-    shippingFee: 0,
-    discount: 1000000,
-    total: 19690000
+    total: 20690000,
+    status: 'completed',
+    paymentStatus: 'paid',
+    paymentMethod: 'credit_card',
+    shippingAddress: '101 Đường Võ Văn Tần, Quận 3, TP.HCM',
+    createdAt: '2023-07-12T10:30:00Z',
+    updatedAt: '2023-07-14T16:45:00Z'
+  },
+  {
+    id: 'ORD-005',
+    userId: 1,
+    userName: 'Nguyễn Văn A',
+    sellerId: 2,
+    sellerName: 'Trần Thị B',
+    items: [
+      {
+        productId: 6,
+        productName: 'Loa Bluetooth Di Động',
+        price: 1840000,
+        quantity: 1,
+        subtotal: 1840000
+      }
+    ],
+    total: 1840000,
+    status: 'pending',
+    paymentStatus: 'pending',
+    paymentMethod: 'cod',
+    shippingAddress: '123 Đường Lê Lợi, Quận 1, TP.HCM',
+    createdAt: '2023-07-15T14:15:00Z',
+    updatedAt: '2023-07-15T14:15:00Z'
   }
 ];
 
 // Order status options
 export const orderStatuses = [
-  { value: 'pending', label: 'Chờ xác nhận', color: 'warning' },
+  { value: 'pending', label: 'Chờ xử lý', color: 'warning' },
   { value: 'processing', label: 'Đang xử lý', color: 'info' },
-  { value: 'shipped', label: 'Đã giao cho vận chuyển', color: 'primary' },
-  { value: 'delivered', label: 'Đã giao hàng', color: 'success' },
+  { value: 'shipped', label: 'Đã giao hàng', color: 'primary' },
+  { value: 'completed', label: 'Hoàn thành', color: 'success' },
   { value: 'cancelled', label: 'Đã hủy', color: 'danger' }
 ];
 

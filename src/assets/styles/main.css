@@ -1,5 +1,9 @@
-/* Global Styles for E-commerce Homepage */
+/* Tailwind CSS */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
+/* Global Styles for E-commerce Homepage */
 :root {
   --primary-color: #ff6a00;
   --secondary-color: #0066cc;

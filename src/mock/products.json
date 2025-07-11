@@ -1,0 +1,94 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Điện thoại Samsung Galaxy S23",
+      "description": "Điện thoại Samsung Galaxy S23 mới nhất với camera 108MP",
+      "price": 18990000,
+      "discountPrice": 17500000,
+      "sellerId": 2,
+      "sellerName": "Trần Thị B",
+      "category": "Điện thoại",
+      "status": "approved",
+      "commission_rate": 5,
+      "images": [
+        "https://via.placeholder.com/300x300.png?text=Samsung+S23"
+      ],
+      "createdAt": "2023-06-10T08:30:00Z",
+      "updatedAt": "2023-06-15T10:15:00Z",
+      "stock": 25
+    },
+    {
+      "id": 2,
+      "name": "Laptop Dell XPS 15",
+      "description": "Laptop Dell XPS 15 với màn hình 4K, chip Intel i9",
+      "price": 42000000,
+      "discountPrice": null,
+      "sellerId": 5,
+      "sellerName": "Hoàng E",
+      "category": "Laptop",
+      "status": "approved",
+      "commission_rate": 3,
+      "images": [
+        "https://via.placeholder.com/300x300.png?text=Dell+XPS+15"
+      ],
+      "createdAt": "2023-06-12T09:45:00Z",
+      "updatedAt": "2023-06-12T09:45:00Z",
+      "stock": 10
+    },
+    {
+      "id": 3,
+      "name": "Tai nghe Apple AirPods Pro",
+      "description": "Tai nghe Apple AirPods Pro với khả năng chống ồn chủ động",
+      "price": 5990000,
+      "discountPrice": 5500000,
+      "sellerId": 2,
+      "sellerName": "Trần Thị B",
+      "category": "Phụ kiện",
+      "status": "pending",
+      "commission_rate": 8,
+      "images": [
+        "https://via.placeholder.com/300x300.png?text=AirPods+Pro"
+      ],
+      "createdAt": "2023-06-14T14:20:00Z",
+      "updatedAt": "2023-06-14T14:20:00Z",
+      "stock": 30
+    },
+    {
+      "id": 4,
+      "name": "iPad Pro 12.9 inch",
+      "description": "iPad Pro 12.9 inch với chip M2, màn hình Liquid Retina XDR",
+      "price": 28990000,
+      "discountPrice": 27500000,
+      "sellerId": 5,
+      "sellerName": "Hoàng E",
+      "category": "Máy tính bảng",
+      "status": "approved",
+      "commission_rate": 4,
+      "images": [
+        "https://via.placeholder.com/300x300.png?text=iPad+Pro"
+      ],
+      "createdAt": "2023-06-15T11:10:00Z",
+      "updatedAt": "2023-06-16T09:30:00Z",
+      "stock": 15
+    },
+    {
+      "id": 5,
+      "name": "Đồng hồ thông minh Apple Watch Series 8",
+      "description": "Apple Watch Series 8 với tính năng đo ECG, SpO2",
+      "price": 10990000,
+      "discountPrice": null,
+      "sellerId": 2,
+      "sellerName": "Trần Thị B",
+      "category": "Đồng hồ thông minh",
+      "status": "pending",
+      "commission_rate": 6,
+      "images": [
+        "https://via.placeholder.com/300x300.png?text=Apple+Watch"
+      ],
+      "createdAt": "2023-06-18T15:45:00Z",
+      "updatedAt": "2023-06-18T15:45:00Z",
+      "stock": 20
+    }
+  ]
+}

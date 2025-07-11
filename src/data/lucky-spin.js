@@ -1,101 +1,106 @@
-// Dữ liệu mẫu cho tính năng Vòng Quay May Mắn
+// Sample data for Lucky Spin feature
 
-export const spinRewards = [
+export const luckySpinItems = [
   {
     id: 1,
-    name: "Voucher 500K",
-    color: "#FF6B6B",
-    icon: "fas fa-ticket-alt",
-    probability: 0.05,
-    description: "Voucher 500.000đ cho đơn hàng tiếp theo của bạn!"
+    label: "Voucher $2",
+    type: "voucher",
+    value: 50000,
+    probability: 15,
+    color: "#FF5733",
+    icon: "ticket"
   },
   {
     id: 2,
-    name: "Miễn phí vận chuyển",
-    color: "#4ECDC4",
-    icon: "fas fa-truck",
-    probability: 0.15,
-    description: "Miễn phí vận chuyển cho đơn hàng tiếp theo!"
+    label: "Voucher $4",
+    type: "voucher",
+    value: 100000,
+    probability: 10,
+    color: "#33FF57",
+    icon: "ticket"
   },
   {
     id: 3,
-    name: "Giảm 10%",
-    color: "#FFE66D",
-    icon: "fas fa-percent",
-    probability: 0.2,
-    description: "Giảm 10% cho đơn hàng tiếp theo của bạn!"
+    label: "Voucher $8",
+    type: "voucher",
+    value: 200000,
+    probability: 5,
+    color: "#3357FF",
+    icon: "ticket"
   },
   {
     id: 4,
-    name: "Không trúng",
-    color: "#C7F9CC",
-    icon: "fas fa-times-circle",
-    probability: 0.25,
-    description: "Chúc bạn may mắn lần sau!"
+    label: "Free Shipping",
+    type: "freeship",
+    value: 0,
+    probability: 20,
+    color: "#FF33A8",
+    icon: "truck"
   },
   {
     id: 5,
-    name: "Giảm 5%",
-    color: "#FF9F1C",
-    icon: "fas fa-tag",
-    probability: 0.2,
-    description: "Giảm 5% cho đơn hàng tiếp theo của bạn!"
+    label: "5% Off",
+    type: "discount",
+    value: 5,
+    probability: 15,
+    color: "#33FFF6",
+    icon: "percent"
   },
   {
     id: 6,
-    name: "Mua 1 Tặng 1",
-    color: "#A9DEF9",
-    icon: "fas fa-gift",
-    probability: 0.05,
-    description: "Mua một tặng một cho các sản phẩm được chọn!"
+    label: "10% Off",
+    type: "discount",
+    value: 10,
+    probability: 10,
+    color: "#F6FF33",
+    icon: "percent"
   },
   {
     id: 7,
-    name: "Hộp Quà Bí Mật",
-    color: "#E4C1F9",
-    icon: "fas fa-box",
-    probability: 0.05,
-    description: "Một món quà bất ngờ với đơn hàng tiếp theo của bạn!"
+    label: "15% Off",
+    type: "discount",
+    value: 15,
+    probability: 5,
+    color: "#FF33F6",
+    icon: "percent"
   },
   {
     id: 8,
-    name: "Điểm Thưởng",
-    color: "#FCF6BD",
-    icon: "fas fa-star",
-    probability: 0.05,
-    description: "100 điểm thưởng được thêm vào tài khoản của bạn!"
+    label: "Better luck next time",
+    type: "none",
+    value: 0,
+    probability: 20,
+    color: "#CCCCCC",
+    icon: "frown"
   }
 ];
 
-export const spinHistory = [
+export const userSpins = [
   {
-    id: 1,
-    date: "2023-07-10",
-    reward: "Giảm 10%",
-    used: true
+    userId: 1,
+    spinsRemaining: 3,
+    history: [
+      {
+        date: "2023-07-10T10:30:00Z",
+        itemId: 4,
+        itemLabel: "Free Shipping"
+      },
+      {
+        date: "2023-07-12T15:45:00Z",
+        itemId: 8,
+        itemLabel: "Better luck next time"
+      }
+    ]
   },
   {
-    id: 2,
-    date: "2023-07-08",
-    reward: "Miễn phí vận chuyển",
-    used: false
-  },
-  {
-    id: 3,
-    date: "2023-07-05",
-    reward: "Không trúng",
-    used: true
-  },
-  {
-    id: 4,
-    date: "2023-07-01",
-    reward: "Điểm Thưởng",
-    used: true
-  },
-  {
-    id: 5,
-    date: "2023-06-28",
-    reward: "Giảm 5%",
-    used: false
+    userId: 4,
+    spinsRemaining: 1,
+    history: [
+      {
+        date: "2023-07-11T09:15:00Z",
+        itemId: 5,
+        itemLabel: "5% Off"
+      }
+    ]
   }
 ];
