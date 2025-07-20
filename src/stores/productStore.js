@@ -1,13 +1,15 @@
 import { defineStore } from 'pinia'
-import api from '../services/api'
+import backendApiService from '../services/backendApi'
 import Swal from 'sweetalert2'
+import apiAdapter from '../services/apiAdapter'
 
 export const useProductStore = defineStore('product', {
   state: () => ({
     products: [],
+    categories: [],
+    featuredProducts: [],
     loading: false,
-    error: null,
-    nextId: 100 // For generating new product IDs
+    error: null
   }),
   
   getters: {
@@ -31,12 +33,12 @@ export const useProductStore = defineStore('product', {
   },
   
   actions: {
-    async fetchProducts() {
+    async fetchProducts(params = {}) {
       this.loading = true
       
       try {
-        const response = await api.getProducts()
-        this.products = response.data
+        const response = await backendApiService.getProducts(params)
+        this.products = response.data || response
       } catch (error) {
         this.error = error.message || 'Failed to fetch products'
         Swal.fire({
@@ -49,11 +51,44 @@ export const useProductStore = defineStore('product', {
         this.loading = false
       }
     },
+
+    async fetchCategories() {
+      this.loading = true
+      
+      try {
+        const response = await backendApiService.getCategories()
+        this.categories = response.data || response
+      } catch (error) {
+        this.error = error.message || 'Failed to fetch categories'
+        Swal.fire({
+          title: 'Error!',
+          text: this.error,
+          icon: 'error',
+          confirmButtonText: 'OK'
+        })
+      } finally {
+        this.loading = false
+      }
+    },
+
+    async fetchFeaturedProducts() {
+      this.loading = true
+      
+      try {
+        const response = await backendApiService.getFeaturedProducts()
+        this.featuredProducts = response.data || response
+      } catch (error) {
+        this.error = error.message || 'Failed to fetch featured products'
+        console.error('Featured products error:', error)
+      } finally {
+        this.loading = false
+      }
+    },
     
     async getProductById(id) {
       try {
-        const response = await api.getProductById(id)
-        return response.data
+        const response = await backendApiService.getProduct(id)
+        return response.data || response
       } catch (error) {
         this.error = error.message || 'Failed to fetch product'
         Swal.fire({
@@ -66,14 +101,14 @@ export const useProductStore = defineStore('product', {
       }
     },
     
-    async updateProduct(productData) {
+    async updateProduct(id, productData) {
       this.loading = true
       
       try {
-        const response = await api.updateProduct(productData)
+        const response = await backendApiService.adminUpdateProduct(id, productData)
         
         // Update local state
-        const index = this.products.findIndex(product => product.id === productData.id)
+        const index = this.products.findIndex(product => product.id === id)
         if (index !== -1) {
           this.products[index] = { ...this.products[index], ...productData }
         }
@@ -85,7 +120,7 @@ export const useProductStore = defineStore('product', {
           confirmButtonText: 'OK'
         })
         
-        return response.data
+        return response.data || response
       } catch (error) {
         this.error = error.message || 'Failed to update product'
         Swal.fire({
@@ -104,7 +139,7 @@ export const useProductStore = defineStore('product', {
       this.loading = true
       
       try {
-        await api.approveProduct(id)
+        await apiAdapter.approveProduct(id)
         
         // Update local state
         const index = this.products.findIndex(product => product.id === id)
@@ -138,7 +173,7 @@ export const useProductStore = defineStore('product', {
       this.loading = true
       
       try {
-        await api.deleteProduct(id)
+        await apiAdapter.deleteProduct(id)
         
         // Update local state
         this.products = this.products.filter(product => product.id !== id)
@@ -169,18 +204,11 @@ export const useProductStore = defineStore('product', {
       this.loading = true
       
       try {
-        // Generate a new ID for the product
-        const newId = this.nextId++
-        const newProduct = {
-          id: newId,
-          ...productData
-        }
-        
         // Call API to create product
-        const response = await api.createProduct(newProduct)
+        const response = await backendApiService.adminCreateProduct(productData)
         
         // Add to local state
-        this.products.push(response.data)
+        this.products.push(response.data || response)
         
         Swal.fire({
           title: 'Success!',
@@ -189,7 +217,7 @@ export const useProductStore = defineStore('product', {
           confirmButtonText: 'OK'
         })
         
-        return response.data
+        return response.data || response
       } catch (error) {
         this.error = error.message || 'Failed to create product'
         Swal.fire({
@@ -199,6 +227,57 @@ export const useProductStore = defineStore('product', {
           confirmButtonText: 'OK'
         })
         return null
+      } finally {
+        this.loading = false
+      }
+    },
+
+    async adminDeleteProduct(id) {
+      this.loading = true
+      
+      try {
+        await backendApiService.adminDeleteProduct(id)
+        
+        // Update local state
+        this.products = this.products.filter(product => product.id !== id)
+        
+        Swal.fire({
+          title: 'Success!',
+          text: 'Product deleted successfully',
+          icon: 'success',
+          confirmButtonText: 'OK'
+        })
+        
+        return true
+      } catch (error) {
+        this.error = error.message || 'Failed to delete product'
+        Swal.fire({
+          title: 'Error!',
+          text: this.error,
+          icon: 'error',
+          confirmButtonText: 'OK'
+        })
+        return false
+      } finally {
+        this.loading = false
+      }
+    },
+
+    async searchProducts(query, params = {}) {
+      this.loading = true
+      
+      try {
+        const response = await backendApiService.searchProducts(query, params)
+        return response.data || response
+      } catch (error) {
+        this.error = error.message || 'Failed to search products'
+        Swal.fire({
+          title: 'Error!',
+          text: this.error,
+          icon: 'error',
+          confirmButtonText: 'OK'
+        })
+        return []
       } finally {
         this.loading = false
       }

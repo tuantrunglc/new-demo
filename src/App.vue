@@ -1,12 +1,48 @@
 <template>
   <div id="app" class="font-sans antialiased text-gray-900">
+    <!-- Auth Header - only show when authenticated -->
+    <AuthHeader v-if="isAuthenticated && showAuthHeader" />
+    
+    <!-- Main Content -->
     <router-view />
   </div>
 </template>
 
 <script>
+import { computed } from 'vue'
+import { useRoute } from 'vue-router'
+import { useAuth } from './composables/useAuth'
+import AuthHeader from './components/AuthHeader.vue'
+
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    AuthHeader
+  },
+  setup() {
+    const route = useRoute()
+    const { isAuthenticated } = useAuth()
+    
+    // Don't show auth header on login/register pages
+    const showAuthHeader = computed(() => {
+      const hideOnRoutes = [
+        'user-login',
+        'user-register', 
+        'adminLogin',
+        'landing',
+        'access-denied',
+        'admin-access-denied',
+        'unauthorized'
+      ]
+      
+      return !hideOnRoutes.includes(route.name)
+    })
+    
+    return {
+      isAuthenticated,
+      showAuthHeader
+    }
+  }
 }
 </script>
 

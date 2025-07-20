@@ -1,0 +1,119 @@
+{
+  "orders": [
+    {
+      "id": "ORD-001",
+      "userId": 1,
+      "userName": "Nguyễn Văn A",
+      "sellerId": 2,
+      "sellerName": "Trần Thị B",
+      "items": [
+        {
+          "productId": 1,
+          "productName": "Điện thoại Samsung Galaxy S23",
+          "price": 17500000,
+          "quantity": 1,
+          "subtotal": 17500000
+        }
+      ],
+      "total": 17500000,
+      "status": "completed",
+      "paymentStatus": "paid",
+      "paymentMethod": "credit_card",
+      "shippingAddress": "123 Đường Lê Lợi, Quận 1, TP.HCM",
+      "createdAt": "2023-07-05T09:30:00Z",
+      "updatedAt": "2023-07-07T14:20:00Z"
+    },
+    {
+      "id": "ORD-002",
+      "userId": 4,
+      "userName": "Phạm Thị D",
+      "sellerId": 5,
+      "sellerName": "Hoàng E",
+      "items": [
+        {
+          "productId": 2,
+          "productName": "Laptop Dell XPS 15",
+          "price": 42000000,
+          "quantity": 1,
+          "subtotal": 42000000
+        }
+      ],
+      "total": 42000000,
+      "status": "processing",
+      "paymentStatus": "paid",
+      "paymentMethod": "bank_transfer",
+      "shippingAddress": "101 Đường Võ Văn Tần, Quận 3, TP.HCM",
+      "createdAt": "2023-07-08T11:45:00Z",
+      "updatedAt": "2023-07-08T11:45:00Z"
+    },
+    {
+      "id": "ORD-003",
+      "userId": 1,
+      "userName": "Nguyễn Văn A",
+      "sellerId": 2,
+      "sellerName": "Trần Thị B",
+      "items": [
+        {
+          "productId": 3,
+          "productName": "Tai nghe Apple AirPods Pro",
+          "price": 5500000,
+          "quantity": 1,
+          "subtotal": 5500000
+        }
+      ],
+      "total": 5500000,
+      "status": "shipped",
+      "paymentStatus": "paid",
+      "paymentMethod": "momo",
+      "shippingAddress": "123 Đường Lê Lợi, Quận 1, TP.HCM",
+      "createdAt": "2023-07-10T15:20:00Z",
+      "updatedAt": "2023-07-11T09:10:00Z"
+    },
+    {
+      "id": "ORD-004",
+      "userId": 4,
+      "userName": "Phạm Thị D",
+      "sellerId": 5,
+      "sellerName": "Hoàng E",
+      "items": [
+        {
+          "productId": 4,
+          "productName": "iPad Pro 12.9 inch",
+          "price": 27500000,
+          "quantity": 1,
+          "subtotal": 27500000
+        }
+      ],
+      "total": 27500000,
+      "status": "completed",
+      "paymentStatus": "paid",
+      "paymentMethod": "credit_card",
+      "shippingAddress": "101 Đường Võ Văn Tần, Quận 3, TP.HCM",
+      "createdAt": "2023-07-12T10:30:00Z",
+      "updatedAt": "2023-07-14T16:45:00Z"
+    },
+    {
+      "id": "ORD-005",
+      "userId": 1,
+      "userName": "Nguyễn Văn A",
+      "sellerId": 2,
+      "sellerName": "Trần Thị B",
+      "items": [
+        {
+          "productId": 5,
+          "productName": "Đồng hồ thông minh Apple Watch Series 8",
+          "price": 10990000,
+          "quantity": 1,
+          "subtotal": 10990000
+        }
+      ],
+      "total": 10990000,
+      "status": "pending",
+      "paymentStatus": "pending",
+      "paymentMethod": "cod",
+      "shippingAddress": "123 Đường Lê Lợi, Quận 1, TP.HCM",
+      "createdAt": "2023-07-15T14:15:00Z",
+      "updatedAt": "2023-07-15T14:15:00Z"
+    }
+  ]
+}

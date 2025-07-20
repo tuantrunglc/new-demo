@@ -1,145 +1,111 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
-import AdminLogin from '../views/admin/AdminLogin.vue'
-import AdminDashboard from '../views/admin/AdminDashboard.vue'
-import UserManagement from '../views/admin/UserManagement.vue'
-import OrderManagement from '../views/admin/OrderManagement.vue'
-import CreateOrder from '../views/admin/CreateOrder.vue'
-import ProductManagement from '../views/admin/ProductManagement.vue'
-import CreateProduct from '../views/admin/CreateProduct.vue'
-import SpinManagement from '../views/admin/SpinManagement.vue'
-import CommissionManagement from '../views/admin/CommissionManagement.vue'
-import WalletManagement from '../views/admin/WalletManagement.vue'
-import DashboardView from '../views/admin/DashboardView.vue'
-import UnauthorizedView from '../views/admin/UnauthorizedView.vue'
-
-// Auth guard
-const requireAuth = (to, from, next) => {
-  const isAuthenticated = localStorage.getItem('adminToken')
-  if (isAuthenticated) {
-    next()
-  } else {
-    next('/admin/login')
-  }
-}
-
-// Role-based guard
-const requireRole = (requiredRole) => {
-  return (to, from, next) => {
-    const userStr = localStorage.getItem('adminUser')
-    if (!userStr) {
-      next('/admin/login')
-      return
-    }
-    
-    const user = JSON.parse(userStr)
-    if (
-      requiredRole === 'admin' && user.role === 'admin' ||
-      requiredRole === 'admin_or_subadmin' && (user.role === 'admin' || user.role === 'sub_admin')
-    ) {
-      next()
-    } else {
-      next('/admin/unauthorized')
-    }
-  }
-}
+import adminRoutes from '../admin/router'
+import userRoutes from '../user/router'
+import { useToast } from 'vue-toastification'
+import {
+  isUserAuthenticated,
+  isAdminAuthenticated,
+  isCurrentUserAdmin,
+  isAdminRoute,
+  validateAuthTokens,
+  getCurrentUserRole
+} from '../utils/authUtils'
 
 const routes = [
-  {
-    path: '/',
-    name: 'home',
-    component: HomeView
-  },
-  {
-    path: '/admin/login',
-    name: 'adminLogin',
-    component: AdminLogin
-  },
-  {
-    path: '/admin/unauthorized',
-    name: 'unauthorized',
-    component: UnauthorizedView
-  },
-  {
-    path: '/admin',
-    component: AdminDashboard,
-    beforeEnter: requireAuth,
-    children: [
-      {
-        path: '',
-        name: 'adminHome',
-        redirect: { name: 'dashboard' }
-      },
-      {
-        path: 'dashboard',
-        name: 'dashboard',
-        component: DashboardView,
-        meta: { requiresAuth: true, role: 'admin_or_subadmin' },
-        beforeEnter: requireRole('admin_or_subadmin')
-      },
-      {
-        path: 'users',
-        name: 'userManagement',
-        component: UserManagement,
-        meta: { requiresAuth: true, role: 'admin_or_subadmin' },
-        beforeEnter: requireRole('admin_or_subadmin')
-      },
-      {
-        path: 'products',
-        name: 'productManagement',
-        component: ProductManagement,
-        meta: { requiresAuth: true, role: 'admin_or_subadmin' },
-        beforeEnter: requireRole('admin_or_subadmin')
-      },
-      {
-        path: 'products/create',
-        name: 'createProduct',
-        component: CreateProduct,
-        meta: { requiresAuth: true, role: 'admin_or_subadmin' },
-        beforeEnter: requireRole('admin_or_subadmin')
-      },
-      {
-        path: 'orders',
-        name: 'orderManagement',
-        component: OrderManagement,
-        meta: { requiresAuth: true, role: 'admin_or_subadmin' },
-        beforeEnter: requireRole('admin_or_subadmin')
-      },
-      {
-        path: 'orders/create',
-        name: 'createOrder',
-        component: CreateOrder,
-        meta: { requiresAuth: true, role: 'admin_or_subadmin' },
-        beforeEnter: requireRole('admin_or_subadmin')
-      },
-      {
-        path: 'spins',
-        name: 'spinManagement',
-        component: SpinManagement,
-        meta: { requiresAuth: true, role: 'admin' },
-        beforeEnter: requireRole('admin')
-      },
-      {
-        path: 'commissions',
-        name: 'commissionManagement',
-        component: CommissionManagement,
-        meta: { requiresAuth: true, role: 'admin_or_subadmin' },
-        beforeEnter: requireRole('admin_or_subadmin')
-      },
-      {
-        path: 'wallets',
-        name: 'walletManagement',
-        component: WalletManagement,
-        meta: { requiresAuth: true, role: 'admin' },
-        beforeEnter: requireRole('admin')
-      }
-    ]
-  }
+  ...userRoutes,
+  ...adminRoutes
 ]
 
 const router = createRouter({
   history: createWebHistory('/'),
   routes
+})
+
+// Navigation guards
+router.beforeEach((to, from, next) => {
+  const toast = useToast()
+  
+  // Validate authentication tokens before proceeding
+  validateAuthTokens()
+  
+  const currentRole = getCurrentUserRole()
+  const isAdmin = isCurrentUserAdmin()
+  const isUserAuth = isUserAuthenticated()
+  const isAdminAuth = isAdminAuthenticated()
+  
+  // Debug logging in development
+  if (process.env.NODE_ENV === 'development') {
+    console.log('🛣️ Router Guard:', {
+      to: to.path,
+      currentRole,
+      isAdmin,
+      isUserAuth,
+      isAdminAuth,
+      isAdminRoute: isAdminRoute(to.path)
+    })
+  }
+  
+  // Skip access control for specific pages
+  const skipPages = ['access-denied', 'admin-access-denied', 'adminLogin', 'user-login', 'landing']
+  if (skipPages.includes(to.name)) {
+    next()
+    return
+  }
+  
+  // Admin routes protection
+  if (isAdminRoute(to.path)) {
+    console.log('🔒 Checking admin route access...')
+    
+    if (!isAdminAuth) {
+      console.log('❌ No admin token')
+      toast.warning('Vui lòng đăng nhập với tài khoản quản trị viên')
+      next('/admin/login')
+      return
+    }
+    
+    if (!isAdmin) {
+      console.log('❌ Not admin role:', currentRole)
+      toast.error('Bạn không có quyền truy cập vào khu vực quản trị')
+      next({ name: 'access-denied' })
+      return
+    }
+    
+    console.log('✅ Admin access granted')
+  } else {
+    // User routes protection
+    if (to.meta.requiresAuth && !isUserAuth) {
+      toast.info('Vui lòng đăng nhập để tiếp tục')
+      next({
+        name: 'user-login',
+        query: { redirect: to.fullPath }
+      })
+      return
+    }
+    
+    // Prevent admin from accessing user routes (except public pages)
+    if (isAdminAuth && isAdmin && to.meta.requiresAuth) {
+      toast.warning('Bạn đang đăng nhập với quyền quản trị viên. Vui lòng sử dụng giao diện quản trị.')
+      next({ name: 'admin-access-denied' })
+      return
+    }
+  }
+  
+  // Guest pages (login/register)
+  if (to.meta.requiresGuest) {
+    if (isAdminRoute(to.path) && isAdminAuth) {
+      toast.info('Bạn đã đăng nhập rồi')
+      next({ name: 'dashboard' })
+      return
+    }
+    
+    if (!isAdminRoute(to.path) && isUserAuth) {
+      toast.info('Bạn đã đăng nhập rồi')
+      next({ name: 'home' })
+      return
+    }
+  }
+  
+  next()
 })
 
 export default router

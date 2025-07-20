@@ -37,6 +37,87 @@ const mockApi = {
     return authenticateAdmin(username, password);
   },
 
+  // User Auth
+  userLogin: async (email, password) => {
+    await delay(500);
+    
+    // Mock user authentication
+    const user = users.find(u => u.email === email && u.password === password && u.role === 'user');
+    
+    if (user) {
+      const token = `user-token-${Date.now()}`;
+      return {
+        success: true,
+        token,
+        user: {
+          id: user.id,
+          email: user.email,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          phone: user.phone,
+          role: user.role,
+          avatar: user.avatar,
+          createdAt: user.createdAt
+        }
+      };
+    }
+    
+    return null;
+  },
+
+  userRegister: async (userData) => {
+    await delay(800);
+    
+    // Check if email already exists
+    const existingUser = users.find(u => u.email === userData.email);
+    if (existingUser) {
+      throw new Error('Email đã được sử dụng');
+    }
+    
+    // Check if phone already exists
+    const existingPhone = users.find(u => u.phone === userData.phone);
+    if (existingPhone) {
+      throw new Error('Số điện thoại đã được sử dụng');
+    }
+    
+    // Create new user
+    const newUser = {
+      id: `user-${Date.now()}`,
+      email: userData.email,
+      password: userData.password, // In real app, this should be hashed
+      firstName: userData.firstName,
+      lastName: userData.lastName,
+      phone: userData.phone,
+      birthDate: userData.birthDate,
+      gender: userData.gender,
+      role: 'user',
+      status: 'active',
+      avatar: null,
+      newsletter: userData.newsletter,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString()
+    };
+    
+    // Add to users array (in real app, this would be saved to database)
+    users.push(newUser);
+    
+    const token = `user-token-${Date.now()}`;
+    return {
+      success: true,
+      token,
+      user: {
+        id: newUser.id,
+        email: newUser.email,
+        firstName: newUser.firstName,
+        lastName: newUser.lastName,
+        phone: newUser.phone,
+        role: newUser.role,
+        avatar: newUser.avatar,
+        createdAt: newUser.createdAt
+      }
+    };
+  },
+
   // Users
   getUsers: async () => {
     await delay(300);
